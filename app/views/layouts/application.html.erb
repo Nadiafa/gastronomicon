@@ -21,8 +21,10 @@
       <%= link_to "Sign Up", signup_path %>
       <%= link_to "Log In", login_path %>
     <% end %>
-
   </header>
+    <div style="color:red;">
+      <%= flash[:message] if flash[:message] %>
+    </div>
     <%= yield %>
   </body>
 </html>
