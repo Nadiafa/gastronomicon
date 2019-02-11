@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :redirect_if_not_logged_in
   
   def home
     @recipes = Recipe.all
@@ -12,5 +12,12 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end 
+
+  def redirect_if_not_logged_in
+    if !logged_in?
+      flash[:message] = "You are not logged in. Please Sign Up or Log In to continue."
+      redirect_to root_path
+    end
   end 
 end
