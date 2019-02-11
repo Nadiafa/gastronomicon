@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   ### redirect '/' to a home/welcome page
   # root      GET    /          application#home
   root 'application#home'
@@ -15,4 +16,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   # logout    GET    /logout   sessions#destroy
   get '/logout', to: 'sessions#destroy'
+
+  ### recipes
+  
+  resources :users, only: [:show] do 
+    resources :recipes, only: [:new]
+  end 
+  resources :recipes, only: [:index, :create, :show]
 end
