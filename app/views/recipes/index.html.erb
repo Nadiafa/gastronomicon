@@ -1,0 +1,13 @@
+<h6>VIEWS/RECIPES/index.html.erb</h6>
+
+<% @recipes.each do |recipe| %>
+  <h3><%= recipe.title %></h3>
+  <h6>by: <%= recipe.user.username %></h6>
+  <p><%= recipe.description %></p>
+<% end %>
+
+<br><br><br>
+
+<%= link_to "Create a new recipe", new_user_recipe_path(current_user) %>
+<br>
+<%= link_to "Back to my profile", user_path(current_user) %>

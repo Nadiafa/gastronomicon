@@ -1,0 +1,11 @@
+<h6>VIEWS/RECIPES/new.html.erb</h6>
+<h3>Please enter the details for a new recipe</h3>
+<%= form_for @recipe do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br><br>
+  <%= f.submit %>
+<% end %>
