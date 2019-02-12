@@ -1,20 +1,14 @@
-<h6>VIEWS/USERS/show.html.erb</h6>
+<h2><%= @user.username.capitalize %>'s Recipes</h2>
+<br>
 
-<%= @user.username%>
-
-<% if @user.recipes != [] %>
-  <h3>Your recipes:</h3>
+<% if @user.recipes == [] && @user == current_user %>
+  <p>You have not created any recipes yet! Go ahead and <%= link_to "Create your first recipe", new_user_recipe_path(@user) %></p>
+<% elsif @user.recipes == [] && @user != current_user %>
+  <p><%= @user.username.capitalize %> has not created any recipes yet!</p>
+<% else %>
   <% @user.recipes.each do |recipe| %>
     <h4><%= recipe.title %></h4>
     <p><%= recipe.description %></p>
     <br><br>
   <% end %>
-  <br><br><br>
-  <%= link_to "Create a new recipe", new_user_recipe_path(@user) %>
-<% else %>
-  <p>You have not created any recipes yet! Go ahead and <%= link_to "Create your first recipe", new_user_recipe_path(@user) %></p>
 <% end %>
-
-<br><br><br>
-
-<%= link_to "View all recipes", recipes_path %>
