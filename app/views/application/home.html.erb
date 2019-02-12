@@ -1,14 +1,12 @@
-<h6>HOME PAGE  /  ROOT</h6>
-<br>
-
 <h2>Welcome to Gastronomicon</h2>
+<br>
 
 <h4>Rencently Added:</h4>
 <% @recipes.last(2).each do |r| %>
   <h3><%= r.title %></h3>
-  <h6>by: <%= r.user.username %></h6>
+  <p>by: <%= r.user.username %></p>
   <p><%= r.description %></p>
-  <br><br><br>
+  <br><br>
 <% end %>
-<br>
+
 <p>Please <%= link_to "Sign Up", signup_path %> of <%= link_to "Log In", login_path %> so see more recipes.</p>

@@ -17,10 +17,11 @@ Rails.application.routes.draw do
   # logout    GET    /logout   sessions#destroy
   get '/logout', to: 'sessions#destroy'
 
-  ### recipes
-  
+  ### recipes - I want recipe new nested (users/:user_id/recipes/new)
+  #  new_user_recipe  GET   /users/:user_id/recipes/new   recipes#new
   resources :users, only: [:show] do 
     resources :recipes, only: [:new]
   end 
+      # ? this nested resource adds "GET  /users/:id  users#show" - how do I remove this?
   resources :recipes, only: [:index, :create, :show]
 end

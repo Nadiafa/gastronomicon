@@ -1,9 +1,7 @@
-<h6>VIEWS/RECIPES/index.html.erb</h6>
+<h2>All Gastronomicon's Recipes:</h2>
 
 <% @recipes.each do |recipe| %>
   <h3><%= recipe.title %></h3>
   <h6>by: <%= recipe.user.username %></h6>
   <p><%= recipe.description %></p>
 <% end %>
-
-<br><br><br>

@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :redirect_if_not_logged_in
+  
   def index
     @recipes = Recipe.all
   end 
@@ -22,6 +23,7 @@ class RecipesController < ApplicationController
   end
 
   private 
+  
   def recipe_params
     params.require(:recipe).permit(:title, :description)
   end 
