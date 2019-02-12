@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end 
 
   private
+  
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -19,5 +20,12 @@ class ApplicationController < ActionController::Base
       flash[:message] = "You are not logged in. Please Sign Up or Log In to continue."
       redirect_to root_path
     end
-  end 
+  end
+
+  def redirect_if_logged_in
+    if logged_in?
+      flash[:message] = "You are already logged in."
+      redirect_to user_path(current_user)
+    end
+  end
 end
