@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :redirect_if_not_logged_in
   def index
     @recipes = Recipe.all
   end 
