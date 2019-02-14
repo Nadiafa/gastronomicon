@@ -20,7 +20,8 @@ class SessionsController < ApplicationController
           flash[:message] = "You have successfully logged in"
           redirect_to user_path(user)
         else 
-          raise user.errors.full_messages.inspect
+          flash[:message] = "Something went wrong"
+          redirect_to root_path
         end
       end 
     else
@@ -30,7 +31,7 @@ class SessionsController < ApplicationController
         flash[:message] = "You have successfully logged in"
         redirect_to user_path(@user)
       else
-        flash[:message] = "Something went wrong."
+        flash[:message] = "Something went wrong"
         redirect_to root_path
       end
     end 
@@ -38,6 +39,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
+    flash[:message] = "You have successfully logged out"
     redirect_to root_path
   end
 
