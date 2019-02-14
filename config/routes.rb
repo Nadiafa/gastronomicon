@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   ### redirect '/' to a home/welcome page
   # root      GET    /          application#home
   root 'application#home'
+
   
   ### signup / create a user
   # signup    GET    /signup    users#new
