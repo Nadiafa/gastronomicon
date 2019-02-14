@@ -11,11 +11,9 @@ class SessionsController < ApplicationController
       oauth_password = SecureRandom.hex
       if user = User.find_by(uid: oauth_uid)
         session[:user_id] = user.id
-        # redirect_to root_path
         flash[:message] = "You have successfully logged in"
         redirect_to user_path(user)
       else
-        # user = User.new(uid: oauth_uid, username: auth["info"]["nickname"], password: SecureRandom.hex)
         user = User.new(uid: oauth_uid, username: oauth_username, password: oauth_password)
         if user.save
           session[:user_id] = user.id
@@ -49,16 +47,3 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end 
 end
-
-
-# <OmniAuth::AuthHash 
-#   info=#<OmniAuth::AuthHash::InfoHash 
-#     email=nil 
-      # image="https://avatars3.githubusercontent.com/u/30985274?v=4" 
-#     name="Nadia" 
-#     nickname="Nadiafa" 
-#     urls=#<OmniAuth::AuthHash Blog="" GitHub="https://github.com/Nadiafa">
-#   > 
-#   provider="github" 
-#   uid="30985274"
-# >
