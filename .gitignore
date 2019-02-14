@@ -32,3 +32,5 @@
 
 # Ignore minitest.
 /test/*
+
+.env
