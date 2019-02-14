@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ingredients
   ### get request for omniauth / find or create user and initiate session
   get '/auth/:provider/callback', to: 'sessions#create'
 
