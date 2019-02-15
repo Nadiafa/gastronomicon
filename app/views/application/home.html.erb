@@ -1,12 +1,14 @@
 <h2>Welcome to Gastronomicon</h2>
 <br>
 
-<h4>Rencently Added:</h4>
-<% @recipes.last(2).each do |r| %>
-  <h3><%= r.title %></h3>
-  <p>by: <%= r.user.username %></p>
-  <p><%= r.description %></p>
-  <br><br>
+<% if !@recipes.empty? %>
+  <h4>Rencently Added:</h4>
+  <% @recipes.last(2).each do |r| %>
+    <h3><%= r.title %></h3>
+    <p>by: <%= r.user.username %></p>
+    <p><%= r.description %></p>
+    <br><br>
+  <% end %>
 <% end %>
 
 <p>Please <%= link_to "Sign Up", signup_path %> of <%= link_to "Log In", login_path %> so see more recipes.</p>
