@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :ingredient_recipes
-  resources :ingredients
+  
   ### get request for omniauth / find or create user and initiate session
   get '/auth/:provider/callback', to: 'sessions#create'
 
@@ -29,4 +28,8 @@ Rails.application.routes.draw do
 
   ### recipes / only for index, create and show
   resources :recipes, only: [:index, :create, :show]
+
+  resources :ingredients
+  resources :recipe_ingredients
+  
 end

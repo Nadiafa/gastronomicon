@@ -1,6 +1,6 @@
 class Ingredient < ApplicationRecord
   validates :name, presence: true
 
-  has_many :ingredient_recipes
-  has_many :recipes, through: :ingredient_recipes
+  has_many :recipe_ingredients
+  has_many :recipes, through: :recipe_ingredients
 end

@@ -1,4 +1,4 @@
-class IngredientRecipe < ApplicationRecord
+class RecipeIngredient < ApplicationRecord
   validates :quantity, presence: true
 
   belongs_to :recipe 
