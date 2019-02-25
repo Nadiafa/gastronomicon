@@ -7,10 +7,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    5.times {@recipe.ingredient.build}
+    @ingredients = Ingredient.all 
   end 
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -25,6 +27,6 @@ class RecipesController < ApplicationController
   private 
   
   def recipe_params
-    params.require(:recipe).permit(:title, :description)
+    params.require(:recipe).permit(:title, :description, ingredient_attributes: [:name], ingredient_ids: [])
   end 
 end
