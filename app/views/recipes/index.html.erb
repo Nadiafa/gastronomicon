@@ -1,7 +1,19 @@
 <h2>All Gastronomicon's Recipes:</h2>
 
-<% @recipes.each do |recipe| %>
-  <h3><%= recipe.title %></h3>
-  <h6>by: <%= recipe.user.username %></h6>
-  <p><%= recipe.description %></p>
+<% if !@recipes.empty? %>
+  <% @recipes.each do |recipe| %>
+    <h3><%= recipe.title %></h3>
+    <h6>by: <%= recipe.user.username %></h6>
+    <p><%= recipe.description %></p>
+    <% if recipe.ingredient.count > 0 %>
+      <p>Required Ingredients:</p>
+      <ul>
+        <% recipe.ingredient.each do |ing| %>
+          <li><%= ing.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>There are currently no recipes to display</p>
 <% end %>
