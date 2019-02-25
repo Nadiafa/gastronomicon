@@ -13,8 +13,7 @@ class UsersController < ApplicationController
       flash[:message] = "You have successfully logged in"
       redirect_to user_path(@user)
     else
-      flash[:message] = "Something went wrong"
-      redirect_to root_path
+      render :new
     end 
   end
 
