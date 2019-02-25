@@ -8,7 +8,8 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     5.times {@recipe.ingredient.build}
-    @ingredients = Ingredient.all 
+    @ingredients = Ingredient.all
+    render :new
   end 
 
   def create
@@ -22,6 +23,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by(id: params[:id])
+  end
+
+  def self.recent 
+    where()
   end
 
   private 
