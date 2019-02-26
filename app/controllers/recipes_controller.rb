@@ -25,10 +25,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
   end
 
-  def self.recent 
-    where()
-  end
-
   private 
   
   def recipe_params

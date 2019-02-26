@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredient
 
+  scope :recent, -> { order("created_at DESC").limit(3) }
+
     # override ingredient setter method
   def ingredient_attributes=(ingredient_attributes)
     ingredient_attributes.each do |k, v|
