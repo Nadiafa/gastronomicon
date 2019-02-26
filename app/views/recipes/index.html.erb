@@ -2,7 +2,7 @@
 
 <% if !@recipes.empty? %>
   <% @recipes.each do |recipe| %>
-    <h3><%= recipe.title %></h3>
+    <h3><%= link_to recipe.title, recipe_path(recipe)  %></h3>
     <h6>by: <%= recipe.user.username %></h6>
     <p><%= recipe.description %></p>
     <% if recipe.ingredient.count > 0 %>
