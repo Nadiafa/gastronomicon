@@ -1,16 +1,8 @@
 <h2>Sign Up page</h2>
 <h3>Please enter your details below to Sign Up</h3>
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-	  <div id="error_explanation">
-	    <h3>There were some errors:</h3>
-	    <ul>
-	      <% @user.errors.full_messages.each do |message| %>
-	        <li><%= message %></li>
-	      <% end %>
-	    </ul>
-	  </div>
-	<% end %>
+
+  <%= render partial: 'application/form_for_errors', locals: {obj_to_check: @user } %>
 
   <%= f.label :username %>
   <%= f.text_field :username %>
