@@ -1,13 +1,11 @@
 <h2><%= @user.username.capitalize %>'s Recipes</h2>
-<br>
 <% if @user.recipes == [] && @user == current_user %>
   <p>You have not created any recipes yet! Go ahead and <%= link_to "Create your first recipe", new_user_recipe_path(@user) %></p>
 <% elsif @user.recipes == [] && @user != current_user %>
   <p><%= @user.username.capitalize %> has not created any recipes yet!</p>
 <% else %>
   <% @user.recipes.each do |recipe| %>
-    <h4><%= link_to recipe.title, user_recipe_path(@user, recipe) %></h4>
+    <h3><%= link_to recipe.title, user_recipe_path(@user, recipe) %></h3>
     <p><%= recipe.description %></p>
-    <br><br>
   <% end %>
 <% end %>

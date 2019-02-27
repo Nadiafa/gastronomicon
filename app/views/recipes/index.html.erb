@@ -4,14 +4,6 @@
     <h3><%= link_to recipe.title, user_recipe_path(recipe.user, recipe)  %></h3>
     <p>by: <%= link_to recipe.user.username, user_path(recipe.user) %></p>
     <p><%= recipe.description %></p>
-    <% if recipe.ingredients.count > 0 %>
-      <p>Required Ingredients:</p>
-      <ul>
-        <% recipe.ingredients.each do |ing| %>
-          <li><%= ing.name %></li>
-        <% end %>
-      </ul>
-    <% end %>
   <% end %>
 <% else %>
   <p>There are currently no recipes to display</p>
