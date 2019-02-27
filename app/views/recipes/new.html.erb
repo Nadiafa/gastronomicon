@@ -1,6 +1,6 @@
 <h2>Create a new recipe</h2>
+
 <%= form_for @recipe do |f| %>
- 
   <% if @recipe.errors.any? %>
 	  <div id="error_explanation">
 	    <h3>There were some errors:</h3>
@@ -22,19 +22,26 @@
   <%= f.text_area :description %>
   </div>
 
-  <% if @ingredients != nil %>
-    <div>
-      <%= f.label "Select ingredients:" %>
-      <%= f.collection_check_boxes :ingredient_ids, @ingredients, :id, :name %>
-    </div>
-  <% end %>
+  <%# if @ingredients != nil %>
+    <%# <div> %>
+      <%#= f.label "Select ingredients:" %>
+      <%#= f.collection_check_boxes :ingredient_ids, @ingredients, :id, :name %>
+    <%# </div> %>
+  <%# end %>
 
   <div>
-    <%= f.fields_for :ingredient do |ingredient_fields| %>
-      <%= ingredient_fields.label "Ingredient" %>
-      <%=  ingredient_fields.text_field :name %>
+    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
+      <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.ingredients.build do |ingredient_fields| %>
+        <%= ingredient_fields.label "Ingredient" %>
+        <%= ingredient_fields.text_field :name %>
+      <% end %>
+      <%= recipe_ingredients_fields.label "Quantity" %>
+      <%= recipe_ingredients_fields.text_field :quantity %>
+      
     <% end %>
   </div>
+
+  <br>
 
   <%= f.submit %>
 <% end %>
