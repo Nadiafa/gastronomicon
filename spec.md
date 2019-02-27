@@ -37,11 +37,11 @@
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
     -   validation errors in forms for new user and new recipe
 ## Confirm:
-- [ ] The application is pretty DRY
+- [x] The application is pretty DRY
 
-- [ ] Limited logic in controllers
+- [x] Limited logic in controllers
 
-- [ ] Views use helper methods if appropriate
-
+- [x] Views use helper methods if appropriate
+    - views make use of the helper_method :logged_in?
 - [x] Views use partials if appropriate
     - partials used for form errors in user and recipe new
