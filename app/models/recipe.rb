@@ -3,23 +3,23 @@ class Recipe < ApplicationRecord
   
   belongs_to :user
   has_many :recipe_ingredients
-  has_many :ingredient, through: :recipe_ingredients
+  has_many :ingredients, through: :recipe_ingredients
 
-  accepts_nested_attributes_for :ingredient
+  accepts_nested_attributes_for :recipe_ingredients, :ingredients
 
   scope :recent, -> { order("created_at DESC").limit(3) }
 
-    # override ingredient setter method
-  def ingredient_attributes=(ingredient_attributes)
-    ingredient_attributes.each do |k, v|
-      
-      if !v[:name].empty?
-        if new_k = Ingredient.find_by(name: v[:name])
-          self.ingredient << new_ing
-        else
-          self.ingredient.build(name: v[:name])
-        end 
+  def add_ingredients_to_recipe(params)    
+    params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
+      if recipe_ingredient[:ingredient][:name].present?
+        ingredient_name = recipe_ingredient[:ingredient][:name].downcase
+        ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+      elsif recipe_ingredient[:ingredient_id].present?
+        ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
       end
-    end 
+      if recipe_ingredient[:quantity].present?
+        RecipeIngredient.create(quantity: recipe_ingredient[:quantity], ingredient_id: ingredient.id, recipe_id: self.id )
+      end
+    end
   end
 end
