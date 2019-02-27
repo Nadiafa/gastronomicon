@@ -13,23 +13,19 @@
 	<% end %>
 
   <div>
-    <%= f.label :title %>
+    <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
 
   <div>
-  <%= f.label :description %>
+  <%= f.label :description %><br>
   <%= f.text_area :description %>
   </div>
 
-  <%# if @ingredients != nil %>
-    <%# <div> %>
-      <%#= f.label "Select ingredients:" %>
-      <%#= f.collection_check_boxes :ingredient_ids, @ingredients, :id, :name %>
-    <%# </div> %>
-  <%# end %>
+  <br>
 
   <div>
+    <p>Add your recipe's ingredients:</p>
     <%= f.fields_for :recipe_ingredients, 5.times { @recipe.recipe_ingredients.build } do |recipe_ingredients_fields| %>
       <div>
         <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.ingredients.build do |ingredient_fields| %>
