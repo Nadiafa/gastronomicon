@@ -23,8 +23,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
   end
 
-  private 
-  
+  private
+
   def recipe_params
     params.require(:recipe).permit(:title, :description)
   end

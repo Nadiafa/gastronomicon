@@ -8,20 +8,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
   <header style="padding-bottom:30px;">
     <% if logged_in? %>
       <%= link_to "Home", root_path %>
       <%= link_to "View Recipes", recipes_path %>
-      <%= link_to "My Profile", user_path(current_user) %> 
+      <%= link_to "My Recipes", user_path(current_user) %> 
       <%= link_to "Create New Recipe", new_user_recipe_path(current_user) %>
       <%= link_to "Log Out", logout_path %>
     <% else %>
       <%= link_to "Sign Up", signup_path %>
       <%= link_to "Log In", login_path %>
       <%= link_to "Log In with Github", '/auth/github' %>
-
     <% end %>
   </header>
     <div style="color:red;">

@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
 
   scope :recent, -> { order("created_at DESC").limit(3) }
 
-  def add_ingredients_to_recipe(params)    
+  def add_ingredients_to_recipe(params)
     params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
       if recipe_ingredient[:ingredient][:name].present?
         ingredient_name = recipe_ingredient[:ingredient][:name].downcase

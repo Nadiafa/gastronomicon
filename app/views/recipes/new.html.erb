@@ -1,21 +1,15 @@
 <h2>Create a new recipe</h2>
-
 <%= form_for @recipe do |f| %>
-
   <%= render partial: 'application/form_for_errors', locals: {obj_to_check: @recipe } %>
-  
   <div>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-
   <div>
   <%= f.label :description %><br>
   <%= f.text_area :description %>
   </div>
-
   <br>
-
   <div>
     <p>Add your recipe's ingredients:</p>
     <%= f.fields_for :recipe_ingredients, 5.times { @recipe.recipe_ingredients.build } do |recipe_ingredients_fields| %>
@@ -29,8 +23,6 @@
       <div>      
     <% end %>
   </div>
-
   <br>
-
   <%= f.submit %>
 <% end %>
