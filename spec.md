@@ -43,4 +43,5 @@
 
 - [ ] Views use helper methods if appropriate
 
-- [ ] Views use partials if appropriate
+- [x] Views use partials if appropriate
+    - partials used for form errors in user and recipe new
