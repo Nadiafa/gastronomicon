@@ -1,10 +1,14 @@
 <h2><%= @recipe.title%></h2>
-<p>by: <%= @recipe.user.username %></p>
+<p>by: <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
 <p><%= @recipe.description %></p>
 <br>
-<p>Ingredientes necesarios:</p>
+<p>Ingredients:</p>
 <ul>
-  <% @recipe.ingredient.each do |ing| %>
-    <li><%= ing.name %></li>
+  <% @recipe.ingredients.each do |ing| %>
+    <li><%= ing.name %>: 
+    <% ing.recipe_ingredients.each do |i| %>
+      <%= i.quantity %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
