@@ -7,7 +7,7 @@
   <p><%= @user.username.capitalize %> has not created any recipes yet!</p>
 <% else %>
   <% @user.recipes.each do |recipe| %>
-    <h4><%= recipe.title %></h4>
+    <h4><%= link_to recipe.title, recipe_path(recipe) %></h4>
     <p><%= recipe.description %></p>
     <br><br>
   <% end %>
