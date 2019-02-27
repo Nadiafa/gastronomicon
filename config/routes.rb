@@ -23,11 +23,11 @@ Rails.application.routes.draw do
   ### recipes / recipe/new nested into the current user (users/:user_id/recipes/new)
   #  new_user_recipe  GET   /users/:user_id/recipes/new   recipes#new
   resources :users, only: [] do 
-    resources :recipes, only: [:new]
+    resources :recipes, only: [:new, :show]
   end 
 
   ### recipes / only for index, create and show
-  resources :recipes, only: [:index, :create, :show]
+  resources :recipes, only: [:index, :create]
 
   resources :ingredients
   resources :recipe_ingredients
