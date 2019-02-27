@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Gastronomicon application allows users create and view recipes.
+Users need to sign up, log in or login in with Github in order ro be able to view all recepies available in the application, although there is a pre-view in the home page of the most recent recipes added.
 
-Things you may want to cover:
+Once logged in, users can view a list of all recipes, a list of their own recipes and individual recipe's pages, as well as create their own recipes with a recipe title, description and, ingredients and quantities.
 
-* Ruby version
+This application uses Ruby version 2.3.3
 
-* System dependencies
+To run the application:
+* Clone repo from Github
+* Run `bundle install`
+* Run `rails server`
+* Open 'localhost:3000'
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
