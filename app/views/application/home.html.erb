@@ -10,4 +10,6 @@
 <% end %>
 <br>
 
-<p>Please <%= link_to "Sign Up", signup_path %> of <%= link_to "Log In", login_path %> so see more recipes.</p>
+<% if !logged_in?%>
+  <p>Please <%= link_to "Sign Up", signup_path %> of <%= link_to "Log In", login_path %> so see more recipes.</p>
+<% end %>
