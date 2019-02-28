@@ -1,35 +1,27 @@
 Rails.application.routes.draw do
   
-  ### get request for omniauth / find or create user and initiate session
+  # get request for omniauth / find or create user and initiate session
   get '/auth/:provider/callback', to: 'sessions#create'
 
-  ### redirect '/' to a home/welcome page
-  # root      GET    /          application#home
+  # redirect '/' to a home/welcome page
   root 'application#home'
   
-  ### signup / create a user
-  # signup    GET    /signup    users#new
+  # signup / create a user
   get '/signup', to: 'users#new'
-  resources :users, except: [:index, :new, :update]
   
-  ### login & logout / create & destroy a session
-  # login     GET    /login    sessions#new
+  # login & logout / create & destroy a session
   get '/login', to: 'sessions#new'
-  #           POST   /login    sessions#create
   post '/login', to: 'sessions#create'
-  # logout    GET    /logout   sessions#destroy
   get '/logout', to: 'sessions#destroy'
-
-  ### recipes / recipe/new nested into the current user (users/:user_id/recipes/new)
-  #  new_user_recipe  GET   /users/:user_id/recipes/new   recipes#new
+  
+  # users / user/index / user/new
+  resources :users, except: [:index, :new]
+  
+  # recipes / recipe/new / recipe/show nested into the current user
   resources :users, only: [] do 
     resources :recipes, only: [:new, :show]
   end 
 
-  ### recipes / only for index, create and show
+  # recipes / only for index, create and show
   resources :recipes, only: [:index, :create]
-
-  resources :ingredients
-  resources :recipe_ingredients
-  
 end
