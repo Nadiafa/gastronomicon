@@ -5,7 +5,7 @@
 <p>Ingredients:</p>
 <ul>
   <% @recipe.ingredients.each do |ing| %>
-    <li><%= ing.name %>: 
+    <li><%= link_to ing.name, recipe_ingredient_path(@recipe, ing) %>: 
     <% ing.recipe_ingredients.each do |i| %>
       <%= i.quantity %>
       <% end %>
