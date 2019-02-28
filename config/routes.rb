@@ -24,4 +24,8 @@ Rails.application.routes.draw do
 
   # recipes / only for index, create and show
   resources :recipes, only: [:index, :create]
+
+  resources :recipes, only: [:show] do
+    resources :ingredients, only: [:show]
+  end
 end
