@@ -9,30 +9,22 @@ class SessionsController < ApplicationController
       oauth_uid = auth["uid"]
       oauth_username = auth["info"]["nickname"]
       oauth_password = SecureRandom.hex
-      if user = User.find_by(uid: oauth_uid)
-        session[:user_id] = user.id
-        flash[:message] = "You have successfully logged in"
-        redirect_to user_path(user)
+      if @user = User.find_by(uid: oauth_uid)
+        log_in(@user)
       else
-        user = User.new(uid: oauth_uid, username: oauth_username, password: oauth_password)
-        if user.save
-          session[:user_id] = user.id
-          flash[:message] = "You have successfully logged in"
-          redirect_to user_path(user)
+        @user = User.new(uid: oauth_uid, username: oauth_username, password: oauth_password)
+        if @user.save
+          log_in(@user)
         else 
-          flash[:message] = "Something went wrong"
-          redirect_to root_path
+          redirect_if_error_login
         end
       end 
     else
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        flash[:message] = "You have successfully logged in"
-        redirect_to user_path(@user)
+        log_in(@user)
       else
-        flash[:message] = "Something went wrong"
-        redirect_to root_path
+        redirect_if_error_login
       end
     end 
   end
@@ -47,5 +39,16 @@ class SessionsController < ApplicationController
   
   def auth 
     request.env['omniauth.auth']
-  end 
+  end
+
+  def log_in(user)
+    session[:user_id] = user.id
+    flash[:message] = "You have successfully logged in"
+    redirect_to user_path(@user)
+  end
+
+  def redirect_if_error_login
+    flash[:message] = "Something went wrong"
+    redirect_to root_path
+  end
 end
