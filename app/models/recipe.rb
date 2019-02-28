@@ -10,15 +10,15 @@ class Recipe < ApplicationRecord
   scope :recent, -> { order("created_at DESC").limit(3) }
 
   def add_ingredients_to_recipe(params)
-    params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
-      if recipe_ingredient[:ingredient][:name].present?
-        ingredient_name = recipe_ingredient[:ingredient][:name].downcase
-        ingredient = Ingredient.find_or_create_by(name: ingredient_name)
-      elsif recipe_ingredient[:ingredient_id].present?
-        ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
+    params[:recipe_ingredients_attributes].each do |k, v|
+      if v[:ingredient][:name].present?
+        ingredient_name = v[:ingredient][:name].capitalize
+        new_ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+      elsif v[:ingredient_id].present?
+        new_ingredient = Ingredient.find_by(id: v[:ingredient_id])
       end
-      if recipe_ingredient[:quantity].present?
-        RecipeIngredient.create(quantity: recipe_ingredient[:quantity], ingredient_id: ingredient.id, recipe_id: self.id )
+      if v[:quantity].present?
+        RecipeIngredient.create(quantity: v[:quantity], ingredient_id: new_ingredient.id, recipe_id: self.id )
       end
     end
   end
