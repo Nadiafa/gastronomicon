@@ -11,8 +11,8 @@ class Recipe < ApplicationRecord
 
   def add_ingredients_to_recipe(params)
     params[:recipe_ingredients_attributes].each do |k, v|
-      if v[:ingredient][:name].present?
-        ingredient_name = v[:ingredient][:name].capitalize
+      if v[:ingredient_attributes][:name].present?
+        ingredient_name = v[:ingredient_attributes][:name].capitalize
         new_ingredient = Ingredient.find_or_create_by(name: ingredient_name)
       elsif v[:ingredient_id].present?
         new_ingredient = Ingredient.find_by(id: v[:ingredient_id])

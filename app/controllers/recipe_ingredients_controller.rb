@@ -7,18 +7,25 @@ class RecipeIngredientsController < ApplicationController
 
   def create
     @new_ingredient_name = params[:recipe_ingredient][:ingredient_attributes][:name]  #OK => returns name
-    @ingredient = Ingredient.find_or_create_by(name: @new_ingredient_name)  #OK => returns Ingredient object 
-    @recipe_ingredient = RecipeIngredient.new(recipe_ingredients_params)  # can't get quantity for params
-    if @recipe_ingredient.save
-      redirect_to user_recipe_path(current_user, @recipe)
+    @new_ingredient = Ingredient.find_by(name: @new_ingredient_name)  #OK => returns Ingredient object
+    @recipe_id =  params[:recipe_ingredient][:recipe_id]  #OK => returns recipe_id
+    @quantity = params[:recipe_ingredient][:quantity]
+    if !@new_ingredient.present?
+      @new_ingredient = Ingredient.create(name: @new_ingredient_name)
+    end
+
+    @new_recipe_ingredient = RecipeIngredient.new(ingredient_id: @new_ingredient.id, recipe_id: @recipe_id, quantity: @quantity)
+    if @new_recipe_ingredient.save
+      redirect_to recipe_path(@new_recipe_ingredient.recipe_id)
     else
       render :new 
-    end 
+    end
   end
 
   private
 
-  def recipe_ingredients_params
-    params.require(:recipe_ingredient).permit(:recipe_id, ingredient_id: @ingredient.id, ingredient_attributes: [:quantity])
-  end
+  # TODO
+  # def recipe_ingredients_params
+  #   params.require(:recipe_ingredient).permit()
+  # end
 end 
