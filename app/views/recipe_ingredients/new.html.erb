@@ -1,0 +1,16 @@
+<h2>Add a new ingredient for <%= @recipe.title %></h2>
+
+<%= form_for @recipe_ingredient do |f| %>
+  <%= render partial: 'application/form_for_errors', locals: {obj_to_check: @recipe_ingredient } %>
+  <%= f.hidden_field :recipe_id %>
+  <div>
+    <%= f.fields_for :ingredient, @recipe.ingredients.build do |ingredient_fields| %>
+      <%= ingredient_fields.label "Ingredient" %>
+      <%= ingredient_fields.text_field :name %>
+    <% end %>
+    <%= f.label "Quantity:" %>
+    <%= f.text_field :quantity %>
+  </div>
+  <br>
+  <%= f.submit "Add Ingredient"%>
+<% end %>
